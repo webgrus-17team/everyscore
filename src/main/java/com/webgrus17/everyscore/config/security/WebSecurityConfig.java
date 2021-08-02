@@ -2,6 +2,7 @@ package com.webgrus17.everyscore.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -9,6 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity // WebSecurity 활성화 어노테이션
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    public void configure(WebSecurity web) {
+        web.ignoring().antMatchers("/h2-console/**");
+    }
 
     // http 관련 인증 설정 하는 메소드
     // 우선 관리자 관련 기능은 여유되면 추가하므로 우선 제외
