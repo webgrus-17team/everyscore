@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-// 작동 여부 미지수, 우선 작성
+// 우선 로그인, 로그아웃 성공시 넘어갈 url 비워두었으므로 실행시 오류 발생할 것
 @EnableWebSecurity // WebSecurity 활성화 어노테이션
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
