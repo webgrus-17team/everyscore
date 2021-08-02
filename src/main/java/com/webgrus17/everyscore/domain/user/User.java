@@ -1,5 +1,6 @@
 package com.webgrus17.everyscore.domain.user;
 
+import com.webgrus17.everyscore.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor()
 @Entity // 해당 클래스 entity로 지정
-public class User {
+public class User extends BaseTimeEntity {
 
     @Id
     @GeneratedValue // pk
