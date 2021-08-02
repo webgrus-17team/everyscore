@@ -5,7 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-// 잘 작동 여부 미지수, 우선 작성
+// 작동 여부 미지수, 우선 작성
 @EnableWebSecurity // WebSecurity 활성화 어노테이션
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
