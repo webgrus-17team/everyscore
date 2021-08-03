@@ -5,6 +5,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 // 우선 로그인, 로그아웃 성공시 넘어갈 url 비워두었으므로 실행시 오류 발생할 것
 @EnableWebSecurity // WebSecurity 활성화 어노테이션
@@ -24,6 +25,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/api/v1/user", "api/v1/join").permitAll() // 누구나 접근 가능한 api
                     .anyRequest().hasRole("USER") // 나머지 api는 USER 권한 있어야 함
+                .and()
+                    .exceptionHandling()
+                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/api/v1/login"))
+                    //인증되지 않은 사용자가 접근할 경우, 로그인 페이지로 이동
                 .and()
                     .formLogin()
                         .defaultSuccessUrl("") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
