@@ -38,6 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                         .loginPage("/api/v1/user")  //로그인페이지를 기본 폼에서 커스텀페이지로 설정
+                        .usernameParameter("id")    //시큐리티 기본 아이디명이 username이므로 id로 이름 변경
+                        .passwordParameter("pw")    //노션 기반으로, password->pw 변경
                         .defaultSuccessUrl("") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                 .and()
                     .logout()
