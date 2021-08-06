@@ -19,7 +19,7 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String Id) throws UsernameNotFoundException {
         return userRepository.findById(Id)
-                .orElseThrow(() -> new UsernameNotFoundException(Id));
+                .orElseThrow(() -> new UsernameNotFoundException("id가 존재하지 않습니다: " + Id));
     }
 
     public String save(UserDto userDto) {
