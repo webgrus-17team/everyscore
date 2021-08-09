@@ -25,7 +25,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     private String id; // 유저 아이디
 
     @Column(nullable = false)
-    private String password; // 비밀번호
+    private String pw; // 비밀번호
 
     @Column(length = 10, nullable = false)
     private String gender; // 성별
@@ -39,14 +39,22 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String major; // 학번
+
+    @Column(nullable = false)
+    private String classnumber; // 학과
+
     @Builder
-    public User(String id, String password, String gender, String birth, String name, String email) {
+    public User(String id, String pw, String gender, String birth, String name, String email, String major, String classnumber) {
         this.id = id;
-        this.password = password;
+        this.pw = pw;
         this.gender = gender;
         this.birth = birth;
         this.name = name;
         this.email = email;
+        this.major = major;
+        this.classnumber = classnumber;
     }
 
     // 필수 Override 메소드들 구현
@@ -70,7 +78,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     // 사용자의 password를 반환
     @Override
     public String getPassword() {
-        return getPassword();
+        return getPw();
     }
 
     // 사실 아래 메소드들도 작동하도록 구현해야 하지만,
