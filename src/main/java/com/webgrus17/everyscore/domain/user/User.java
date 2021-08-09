@@ -20,8 +20,10 @@ import java.util.Set;
 public class User extends BaseTimeEntity implements UserDetails {
 
     @Id
-    @GeneratedValue // pk
-    @Column(length = 20) // 최대 길이 제한 20
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // pk, auto increment
+    private Long code;
+
+    @Column(length = 20)
     private String id; // 유저 아이디
 
     @Column(nullable = false)

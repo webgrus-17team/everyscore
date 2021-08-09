@@ -22,7 +22,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("id가 존재하지 않습니다: " + Id));
     }
 
-    public String save(UserDto userDto) {
+    public Long save(UserDto userDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // 인코더 선언
         userDto.setPw(encoder.encode(userDto.getPw())); // 암호화
 
@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
             .name(userDto.getName())
             .email(userDto.getEmail())
             .major(userDto.getMajor())
-            .classnumber(userDto.getClassnumber()).build()).getId();
+            .classnumber(userDto.getClassnumber()).build()).getCode();
     }
 
 }
