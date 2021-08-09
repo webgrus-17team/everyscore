@@ -23,7 +23,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // pk, auto increment
     private Long code;
 
-    @Column(length = 20)
+    @Column(length = 20, nullable = false)
     private String id; // 유저 아이디
 
     @Column(nullable = false)
