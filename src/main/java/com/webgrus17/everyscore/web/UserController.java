@@ -40,6 +40,6 @@ public class UserController {
     @PostMapping("/api/v1/join")
     public String signup(UserDto userDto) {
         userService.save(userDto);
-        return "redirect:http://localhost:8081/Login_Page.jsp"; // 프론트 로그인 사이트로 연결할 것, 그냥 링크 적어도 되는지 찾아보기
+        return "redirect:http://localhost:8081/Login_Page.jsp"; // 프론트 로그인 사이트로 연결할 것
     }
 }
