@@ -32,8 +32,14 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(length = 10, nullable = false)
     private String gender; // 성별
 
-    @Column(nullable = false)
-    private String birth;
+    @Column(length = 4, nullable = false)
+    private String birthday_year;
+
+    @Column(length = 2, nullable = false)
+    private String birthday_month;
+
+    @Column(length = 2, nullable = false)
+    private String birthday_day;
 
     @Column(nullable = false)
     private String name;
@@ -48,11 +54,14 @@ public class User extends BaseTimeEntity implements UserDetails {
     private String classnumber; // 학과
 
     @Builder
-    public User(String id, String pw, String gender, String birth, String name, String email, String major, String classnumber) {
+    public User(String id, String pw, String gender, String birthday_year, String birthday_month, String birthday_day,
+                String name, String email, String major, String classnumber) {
         this.id = id;
         this.pw = pw;
         this.gender = gender;
-        this.birth = birth;
+        this.birthday_year = birthday_year;
+        this.birthday_month = birthday_month;
+        this.birthday_day = birthday_day;
         this.name = name;
         this.email = email;
         this.major = major;
