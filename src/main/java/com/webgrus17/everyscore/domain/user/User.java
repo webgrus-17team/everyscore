@@ -20,18 +20,26 @@ import java.util.Set;
 public class User extends BaseTimeEntity implements UserDetails {
 
     @Id
-    @GeneratedValue // pk
-    @Column(length = 20) // 최대 길이 제한 20
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // pk, auto increment
+    private Long code;
+
+    @Column(length = 20, nullable = false, unique = true)
     private String id; // 유저 아이디
 
     @Column(nullable = false)
-    private String password; // 비밀번호
+    private String pw; // 비밀번호
 
     @Column(length = 10, nullable = false)
     private String gender; // 성별
 
-    @Column(nullable = false)
-    private String birth;
+    @Column(length = 4, nullable = false)
+    private String birthday_year;
+
+    @Column(length = 2, nullable = false)
+    private String birthday_month;
+
+    @Column(length = 2, nullable = false)
+    private String birthday_day;
 
     @Column(nullable = false)
     private String name;
@@ -39,14 +47,25 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private String major; // 학번
+
+    @Column(nullable = false)
+    private String classnumber; // 학과
+
     @Builder
-    public User(String id, String password, String gender, String birth, String name, String email) {
+    public User(String id, String pw, String gender, String birthday_year, String birthday_month, String birthday_day,
+                String name, String email, String major, String classnumber) {
         this.id = id;
-        this.password = password;
+        this.pw = pw;
         this.gender = gender;
-        this.birth = birth;
+        this.birthday_year = birthday_year;
+        this.birthday_month = birthday_month;
+        this.birthday_day = birthday_day;
         this.name = name;
         this.email = email;
+        this.major = major;
+        this.classnumber = classnumber;
     }
 
     // 필수 Override 메소드들 구현
@@ -70,7 +89,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     // 사용자의 password를 반환
     @Override
     public String getPassword() {
-        return getPassword();
+        return getPw();
     }
 
     // 사실 아래 메소드들도 작동하도록 구현해야 하지만,

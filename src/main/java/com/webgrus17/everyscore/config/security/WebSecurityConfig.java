@@ -33,21 +33,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v1/user", "api/v1/join").permitAll() // 누구나 접근 가능한 api
+                    .antMatchers("/api/v1/user", "/api/v1/join").permitAll() // 누구나 접근 가능한 api
                     .anyRequest().hasRole("USER") // 나머지 api는 USER 권한 있어야 함
                 .and()
                     .exceptionHandling()    //인증되지 않은 사용자 접근 시에 로그인 페이지 이동
-                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/api/v1/login"))
+                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/Login_Page.jsp"))
                 .and()
                     .formLogin()
-                        .loginPage("/api/v1/user")  //로그인페이지를 기본 폼에서 커스텀페이지로 설정
+                        .loginPage("http://localhost:8081/Login_Page.jsp")  //로그인페이지를 기본 폼에서 커스텀페이지로 설정
                         .successHandler(authenticationSuccessHandler())
                         .usernameParameter("id")    //시큐리티 기본 아이디명이 username이므로 id로 이름 변경
                         .passwordParameter("pw")    //노션 기반으로, password->pw 변경
-                        .defaultSuccessUrl("") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
+                        .defaultSuccessUrl("http://localhost:8081/main_3.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                 .and()
                     .logout()
-                        .logoutSuccessUrl("") // 로그아웃 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
+                        .logoutSuccessUrl("http://localhost:8081/Login_Page.jsp") // 로그아웃 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                         .invalidateHttpSession(true) // 로그아웃시 저장된 세션 날리기
         ;
     }

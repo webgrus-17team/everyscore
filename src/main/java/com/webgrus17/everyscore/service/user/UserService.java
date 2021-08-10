@@ -19,21 +19,25 @@ public class UserService implements UserDetailsService {
     @Override
     public User loadUserByUsername(String Id) throws UsernameNotFoundException {
         return userRepository.findById(Id)
-                .orElseThrow(() -> new UsernameNotFoundException(Id));
+                .orElseThrow(() -> new UsernameNotFoundException("id가 존재하지 않습니다: " + Id));
     }
 
-    public String save(UserDto userDto) {
+    public Long save(UserDto userDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // 인코더 선언
-        userDto.setPassword(encoder.encode(userDto.getPassword())); // 암호화
+        userDto.setPw(encoder.encode(userDto.getPw())); // 암호화
 
         // db에 저장
         return userRepository.save(User.builder()
             .id(userDto.getId())
-            .password(userDto.getPassword())
+            .pw(userDto.getPw())
             .gender(userDto.getGender())
-            .birth(userDto.getBirth())
+            .birthday_year(userDto.getBirthday_year())
+            .birthday_month(userDto.getBirthday_month())
+            .birthday_day(userDto.getBirthday_day())
             .name(userDto.getName())
-            .email(userDto.getEmail()).build()).getId();
+            .email(userDto.getEmail())
+            .major(userDto.getMajor())
+            .classnumber(userDto.getClassnumber()).build()).getCode();
     }
 
 }
