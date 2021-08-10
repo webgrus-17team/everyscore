@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@CrossOrigin(origins = "*") // CORS 설정, 우선 모든 도메인, 요청방식에 대해 허용하고 추후에 프론트 링크 넣어서 제한하기
+@CrossOrigin(origins = "http://localhost:8081") // CORS 설정, 해당 주소에서 오는 api요청만 받아드림
 @RequiredArgsConstructor // 생성자
 @Controller
 public class UserController {
