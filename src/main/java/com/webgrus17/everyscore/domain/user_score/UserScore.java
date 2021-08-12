@@ -1,13 +1,13 @@
 package com.webgrus17.everyscore.domain.user_score;
 
 import lombok.Builder;
-import lombok.Getter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Getter
-@Entity
-public class user_score {
+public class UserScore {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK, AUTO INCREMENT
     private Long id;
@@ -24,11 +24,11 @@ public class user_score {
     @Column(nullable = false)
     private Integer difficulty;
 
-    //생성날짜
-    //수정날짜
+    //생성날짜 없어도 됨
+    //수정날짜 없어도 됨
 
     @Builder
-    public user_score(Integer score, Integer difficulty){
+    public UserScore(Integer score, Integer difficulty){
         this.score=score;
         this.difficulty=difficulty;
     }
