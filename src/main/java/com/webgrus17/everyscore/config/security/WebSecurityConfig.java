@@ -32,9 +32,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
+                //api 테스트를 위해 아래 4줄(.authorizeRquests()에서 .and()까지를 주석처리해주세요
                 .authorizeRequests()
                     .antMatchers("/api/v1/user", "/api/v1/join").permitAll() // 누구나 접근 가능한 api
-                    .anyRequest().hasRole("USER") // 나머지 api는 USER 권한 있어야 함
+                    .anyRequest().hasRole("USER")
                 .and()
                     .exceptionHandling()    //인증되지 않은 사용자 접근 시에 로그인 페이지 이동
                     .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/Login_Page.jsp"))
