@@ -1,12 +1,12 @@
 package com.webgrus17.everyscore.domain.user_score;
 
 import lombok.Builder;
+import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Getter
+@Entity
 public class UserScore {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK, AUTO INCREMENT
