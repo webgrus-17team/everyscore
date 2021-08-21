@@ -19,23 +19,24 @@ public class Subject {  //과목 교수명 시험종류 중 하나라도 다르�
     private Long id;
 
     @Column(nullable = false)
-    private String Subject_name;
-
-    @Column(nullable = false)
     private String Professor_name;
 
-    @Column(length=20, nullable = false)
-    private String Test_type;
+    @Column(nullable = false)
+    private String Subject_name;
 
     @CreatedDate
     @Column(updatable = false)
     private LocalDateTime createdDate;
 
     @Builder
-    public Subject(String Subject_name, String Professor_name, String Test_type){
-        this.Subject_name=Subject_name;
+    public Subject(String Professor_name, String Subject_name){
         this.Professor_name=Professor_name;
-        this.Test_type=Test_type;
+        this.Subject_name=Subject_name;
     }
 
 }
+
+    /*
+    @Column(length=20, nullable = false)
+    private String Test_type;
+    */
