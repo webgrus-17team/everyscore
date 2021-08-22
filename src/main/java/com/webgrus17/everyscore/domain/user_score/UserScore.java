@@ -4,10 +4,12 @@ import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Getter
+@NoArgsConstructor // 생성자 추가
 @Entity
 public class UserScore {
     @Id
