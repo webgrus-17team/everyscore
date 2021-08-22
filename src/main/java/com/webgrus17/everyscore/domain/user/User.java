@@ -1,5 +1,6 @@
 package com.webgrus17.everyscore.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.webgrus17.everyscore.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,14 +34,8 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(length = 10, nullable = false)
     private String gender; // 성별
 
-    @Column(length = 4, nullable = false)
-    private String birthday_year;
-
-    @Column(length = 2, nullable = false)
-    private String birthday_month;
-
-    @Column(length = 2, nullable = false)
-    private String birthday_day;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private LocalDateTime birthday;
 
     @Column(nullable = false)
     private String name;
@@ -54,14 +50,12 @@ public class User extends BaseTimeEntity implements UserDetails {
     private String classnumber; // 학과
 
     @Builder
-    public User(String id, String pw, String gender, String birthday_year, String birthday_month, String birthday_day,
+    public User(String id, String pw, String gender, LocalDateTime birthday,
                 String name, String email, String major, String classnumber) {
         this.id = id;
         this.pw = pw;
         this.gender = gender;
-        this.birthday_year = birthday_year;
-        this.birthday_month = birthday_month;
-        this.birthday_day = birthday_day;
+        this.birthday = birthday;
         this.name = name;
         this.email = email;
         this.major = major;
