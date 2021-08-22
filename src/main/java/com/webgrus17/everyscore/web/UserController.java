@@ -1,12 +1,18 @@
 package com.webgrus17.everyscore.web;
 
+import com.webgrus17.everyscore.domain.user.User;
+import com.webgrus17.everyscore.domain.user.UserRepository;
 import com.webgrus17.everyscore.service.user.UserService;
 import com.webgrus17.everyscore.web.dto.UserDto;
 import com.webgrus17.everyscore.web.dto.UserLoginDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:8081") // CORS 설정, 해당 주소에서 오는 api요청만 받아드림
 @RequiredArgsConstructor // 생성자
@@ -15,26 +21,11 @@ public class UserController {
 
     private final UserService userService;
 
-    // 로그인 api
-    @PostMapping("/api/v1/user")
-    public String login(UserLoginDto loginDto) {
-
-        /*
-        개발할 예정
-        기본적으로 spring security에서 제공하는 login이 아닌, 직접 구현해야 함
-
-        우선 대략적인 설계
-
-        1. 아이디로 유저 찾는 서비스
-        2. DB로부터 유저 정보 받아 AuthenticationProvider에게 전달해줄 객체
-        3. 2번의 객체 받아서 비밀번호 검증하기, 틀리면 예외 던짐, 맞으면 인증과 권한을 담기
-        4. 2번의 객체를 WebSecurityConfig에 빈으로 주입, authenticationProvider()메소드의 파라미터로 등록
-
-        이대로 될지는 모르겠지만 이런 흐름으로 제작하면 좋을듯
-        */
-
-        return "redirect:http://localhost:8081/main_3.jsp";
-    }
+    // 수많은 삽질 끝에 알아냈는데,
+    // spring security에서 기본적으로 html form 형식으로 받는 로그인 또한 지원해 줌;;;;
+    // 굳이 따로 filter 조작 할필요 없이 WebSecurityConfig에서 설정하면 됨
+    // 물론 공부적인 차원에서 직접 구현해보면 좋겠지만, 제공되는 기능을 우선 활용하기로 함.....
+    // 로그인 시 구글에서 에러메세지 뜨는건 어쩔 수 없는듯?
 
     // 회원가입 api
     @PostMapping("/api/v1/join")
