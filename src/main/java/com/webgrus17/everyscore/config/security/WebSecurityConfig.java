@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //api 테스트를 위해 아래 4줄(.authorizeRquests()에서 .and()까지를 주석처리해주세요
                 .authorizeRequests()
                     .antMatchers("/api/v1/user", "/api/v1/join").permitAll() // 누구나 접근 가능한 api
-                    .anyRequest().hasRole("USER")
+                    .anyRequest().authenticated()
                 .and()
                     .exceptionHandling()    //인증되지 않은 사용자 접근 시에 로그인 페이지 이동
                     .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/Login_Page.jsp"))
