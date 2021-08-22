@@ -1,4 +1,4 @@
-package com.webgrus17.everyscore.web;
+package com.webgrus17.everyscore.web.controller.user;
 
 import com.webgrus17.everyscore.domain.user.User;
 import com.webgrus17.everyscore.domain.user.UserRepository;
