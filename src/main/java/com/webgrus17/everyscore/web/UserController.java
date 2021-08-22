@@ -27,6 +27,8 @@ public class UserController {
     // 물론 공부적인 차원에서 직접 구현해보면 좋겠지만, 제공되는 기능을 우선 활용하기로 함.....
     // 로그인 시 구글에서 에러메세지 뜨는건 어쩔 수 없는듯?
 
+    // -> 오류 메세지에 의하면 토큰 형식을 권장하는 듯 함
+
     // 회원가입 api
     @PostMapping("/api/v1/join")
     public String signup(UserDto userDto) {
