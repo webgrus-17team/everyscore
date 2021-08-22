@@ -50,6 +50,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .defaultSuccessUrl("http://localhost:8081/main_3.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                 .and()
                     .logout()
+                        .logoutUrl("/doLogout") // 로그아웃 요청할시 해당 url 입력
                         .logoutSuccessUrl("http://localhost:8081/Login_Page.jsp") // 로그아웃 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                         .invalidateHttpSession(true) // 로그아웃시 저장된 세션 날리기
         ;
