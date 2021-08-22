@@ -18,11 +18,12 @@ public class Controller {
     private SubjectRepository subjectRepository;
 
 
+    // 오류나서 우선 주석
     //첫 글 작성 post
-    @RequestMapping(value="/start", method= RequestMethod.POST)
-    public ResponseEntity<?> postStart(@ResponseBody Subject subject){
-    subjectRepository.save(subject);
-    return new ResponseEntity<>(("{}", HttpStatus.CREATED));
-    }
+//    @RequestMapping(value="/start", method= RequestMethod.POST)
+//    public ResponseEntity<?> postStart(@ResponseBody Subject subject){
+//    subjectRepository.save(subject);
+//    return new ResponseEntity<>(("{}", HttpStatus.CREATED));
+//    }
 
 }
