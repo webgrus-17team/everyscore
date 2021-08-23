@@ -2,6 +2,8 @@ package com.webgrus17.everyscore.web.controller.post;
 
 import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.subject.SubjectRepository;
+import com.webgrus17.everyscore.domain.user_score.UserScore;
+import com.webgrus17.everyscore.domain.user_score.UserScoreRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 //@RestController
 public class PostController {
 
+    //첫글작성
     private SubjectRepository subjectRepository;
     @RequestMapping(value="/api/v1/start", method= RequestMethod.POST)
     public ResponseEntity<?> postStart(@RequestBody Subject subject){
@@ -22,5 +25,11 @@ public class PostController {
         return new ResponseEntity<>("{}", HttpStatus.CREATED);
     }
 
-
+    //점수입력
+    private UserScoreRepository userScoreRepository;
+    @RequestMapping(value="/api/v1/input", method=RequestMethod.POST)
+    public ResponseEntity<?> postInput(@RequestBody UserScore userScore){
+        userScoreRepository.save(userScore);
+        return new ResponseEntity<>("{}",HttpStatus.CREATED);
+    }
 }
