@@ -20,15 +20,9 @@ public class UserScore {
     @JoinColumn(name="user_id") //fk 지정방식
     private User user;
 
-    //@Column(nullable=false) //FK 지정해야됨
-    //private Long user_id;
-
     @ManyToOne(fetch=FetchType.LAZY)  //과목 1개에 user socre 여러 개 만들어질 수 있음
     @JoinColumn(name="sub_id") //fk 지정방식
     private Subject subject;
-
-    //@Column(nullable = false)   //FK 지정해야됨
-    //private Long sub_id;
 
     @Column(nullable = false)
     private Integer myscore;

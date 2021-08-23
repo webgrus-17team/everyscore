@@ -2,6 +2,7 @@ package com.webgrus17.everyscore.domain.subject;
 
 import com.webgrus17.everyscore.domain.BaseTimeEntity;
 import com.webgrus17.everyscore.domain.user.User;
+import com.webgrus17.everyscore.domain.user_score.UserScore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 //첫글작성에서 post 되고, 메인에서 get
 
@@ -37,6 +39,9 @@ public class Subject extends BaseTimeEntity {  //과목 교수명 시험종류 �
 //    @Column(updatable = false)
 //    private LocalDateTime createdDate;
 
+    @OneToMany
+    @JoinColumn(name="sub_id") //fk 지정방식
+    private List<UserScore> userScoreList;
 
     @Builder
     public Subject(String Professor_name, String Subject_name, String Test_type){

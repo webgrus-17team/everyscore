@@ -2,6 +2,7 @@ package com.webgrus17.everyscore.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.webgrus17.everyscore.domain.BaseTimeEntity;
+import com.webgrus17.everyscore.domain.user_score.UserScore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -49,6 +51,10 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(nullable = false)
     private String classnumber; // 학과
 
+    @OneToMany
+    @JoinColumn(name="user_id") //fk 지정방식
+    private List<UserScore> userScoreList;
+    
     @Builder
     public User(String id, String pw, String gender, LocalDateTime birthday,
                 String name, String email, String major, String classnumber) {
