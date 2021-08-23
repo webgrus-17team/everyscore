@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     //첫글작성
+    //시험종류 3가지 생성해야함
     private SubjectRepository subjectRepository;
     @RequestMapping(value="/api/v1/start", method= RequestMethod.POST)
     public ResponseEntity<?> postStart(@RequestBody Subject subject){
