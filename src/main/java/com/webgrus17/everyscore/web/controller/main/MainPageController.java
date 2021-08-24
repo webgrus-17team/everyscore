@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 public class MainPageController {
 
+    //게시판 검색기능을 구현안해도 될듯, 전체 게시판 내용만 주면 검색은 프론트에서 처리한다고 함
     //게시판 과목 출력
     SubjectRepository subjectRepository;
     @RequestMapping(value = "api/v1/board", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
