@@ -33,9 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/api/v1/user", "/api/v1/join").permitAll() // 누구나 접근 가능한 api
-                    .anyRequest().authenticated()
-//                    .anyRequest().permitAll() // api 테스트 시 위 2줄 주석처리 후 해당 줄 주석 해제
+//                    .antMatchers("/api/v1/user", "/api/v1/join").permitAll() // 누구나 접근 가능한 api
+//                    .anyRequest().authenticated()
+                    .anyRequest().permitAll() // api 테스트 시 위 2줄 주석처리 후 해당 줄 주석 해제
                 .and()
                     .exceptionHandling()    //인증되지 않은 사용자 접근 시에 로그인 페이지 이동
                     .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/Login_Page.jsp"))
