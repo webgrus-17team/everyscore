@@ -50,11 +50,11 @@ public class User extends BaseTimeEntity implements UserDetails {
 
     @Column(nullable = false)
     private String classnumber; // 학과
-
+/*
     @OneToMany
     @JoinColumn(name="user_id") //fk 지정방식
     private List<UserScore> userScoreList;
-    
+  */
     @Builder
     public User(String id, String pw, String gender, LocalDateTime birthday,
                 String name, String email, String major, String classnumber) {

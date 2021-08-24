@@ -15,7 +15,7 @@ public class UserScore {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK, AUTO INCREMENT
     private Long id;
-
+/*
     @ManyToOne(fetch=FetchType.LAZY)  //user 1명이 user score 여러 개 만들 수 있음 //EAGER방식은 추적 어려움 문제로 변경
     @JoinColumn(name="user_id") //fk 지정방식
     private User user;
@@ -23,7 +23,7 @@ public class UserScore {
     @ManyToOne(fetch=FetchType.LAZY)  //과목 1개에 user socre 여러 개 만들어질 수 있음
     @JoinColumn(name="sub_id") //fk 지정방식
     private Subject subject;
-
+*/
     @Column(nullable = false)
     private Integer myscore;
 
