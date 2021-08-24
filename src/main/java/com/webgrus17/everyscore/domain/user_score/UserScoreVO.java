@@ -14,11 +14,14 @@ public class UserScoreVO {
     //해당 폴더는 entity랑 repository와 직결되는 곳이므로, controller에서 request 받은 후에 하는 것이 좋을거 같습니당
     //위치를 여기에 할지, controller에서 request받은 직후에 할지 고민
     //쿼리 내부 id_par과 sub_id_par는 프론트에서 받은 값으로, 아래와 같이 쓸 때 그 변수명이 실행될지 의문
+    /*
     @Query("SELECT x FROM UserScore x WHERE x.id=id_par, x.sub_id=sub_id_par")
     UserScore find(String id_par, String sub_id_par){
 
         //Collection<UserScore>
     }
+
+    */
 }
 
 /*
