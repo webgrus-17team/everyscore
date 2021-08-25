@@ -35,7 +35,7 @@ public class PostController {
 
     //점수입력
     private UserScoreRepository userScoreRepository;
-    @RequestMapping(value="/api/v1/input", method=RequestMethod.POST)
+    @RequestMapping(value="/api/v1/input/{Subject_name}/{Professor_name}/{Test_type}", method=RequestMethod.POST)
     public ResponseEntity<?> postInput(@RequestBody UserScore userScore){
         userScoreRepository.save(userScore);
         return new ResponseEntity<>("{}",HttpStatus.CREATED);
