@@ -9,4 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @RequiredArgsConstructor // 생성자
 @Controller
 public class ResultController {
+
+    // 점수를 score, 난이도를 level로 해당 과목의 모든 사용자의 결과를 보내준다.
 }
