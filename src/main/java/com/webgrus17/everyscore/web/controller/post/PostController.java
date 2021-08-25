@@ -4,6 +4,8 @@ import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.subject.SubjectRepository;
 import com.webgrus17.everyscore.domain.user_score.UserScore;
 import com.webgrus17.everyscore.domain.user_score.UserScoreRepository;
+import com.webgrus17.everyscore.service.user.SubjectService;
+import com.webgrus17.everyscore.web.dto.SubjectSaveDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -25,12 +27,10 @@ public class PostController {
     db 접속에 불량이 있는것으로 보임
     레포지토리 save 코드를 제거했을 때엔 404번 포트가 뜸 즉, 이 코드에서 발생하는 문제로 보임
      */
-    private SubjectRepository subjectRepository;
+    private final SubjectService subjectService;
     @RequestMapping(value="/api/v1/start", method= RequestMethod.POST)
-    public ResponseEntity<?> postStart(@RequestBody Subject subject){
-        System.out.println("post");
-        subjectRepository.save(subject);
-        return new ResponseEntity<>("{}", HttpStatus.CREATED);
+    public Long saveSubject(@RequestBody final SubjectSaveDto subjectSaveDto){
+        return subjectService.save(subjectSaveDto);
     }
 
     //점수입력
