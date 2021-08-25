@@ -1,5 +1,7 @@
 package com.webgrus17.everyscore.web.controller.result;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.user_score.UserScore;
 import com.webgrus17.everyscore.service.user.SubjectService;
@@ -33,12 +35,40 @@ public class ResultController {
         List<UserScore> tempUserScore = userScoreService.findBySubject(tempSubject);
 
         // 3. json으로 만든후 return
+        JsonObject jo = new JsonObject();
 
-        return "";
+        JsonArray ja = new JsonArray();
+        for(int i=0; i< tempUserScore.size(); i++){
+            JsonObject tmpOb = new JsonObject();
+            tmpOb.addProperty("score", tempUserScore.get(i).getMyscore());
+            tmpOb.addProperty("level", tempUserScore.get(i).getLevel());
+            ja.add(tmpOb);
+        }
 
-        // 간과한 내용이 하나 있음
-        // 현재 회원 기능이 불안정해서 내 점수가 몇점인지 모른다
-        // 이를 알려면 현재 사용중인 user의 id 혹은 code가 필요, 일단은 생략해야 할 수도
+        jo.add("result", ja);
+
+        return jo.toString();
+
+        /*
+        예상 보낼 json 형식(UserScore에 점수, 난이도 별 이름이 잘 저장되었다는 가정으로)
+        {
+            "result":[
+                {
+                    "score":17,
+                    "level":"easy"
+                },
+                {
+                    "score":21,
+                    "level":"hard"
+                },
+            ]
+        }
+         */
+        /*
+        간과한 내용이 하나 있음
+        현재 회원 기능이 불안정해서 내 점수가 몇점인지 모른다
+        이를 알려면 현재 사용중인 user의 id 혹은 code가 필요, 일단은 생략해야 할 수도
+         */
     }
 
 }
