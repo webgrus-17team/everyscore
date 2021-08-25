@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 // 첫글 작성(교수명, 과목명 추가), 점수 입력 controller가 위치
 @CrossOrigin(origins = "http://localhost:8081")
 @RequiredArgsConstructor // 생성자
-@Controller
+@RestController
 //@RestController
 public class PostController {
 
