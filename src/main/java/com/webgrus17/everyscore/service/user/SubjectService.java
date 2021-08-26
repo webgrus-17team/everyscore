@@ -29,5 +29,9 @@ public class SubjectService {
         // 해당 과목명, 교수명을 지닌 과목의 id를 return
         return subjects.get(0);
     }
+    @Transactional
+    public List<Subject> findAll(){
+        return subjectRepository.findAll();
+    }
 
 }

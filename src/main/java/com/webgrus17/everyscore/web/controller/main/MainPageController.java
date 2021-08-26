@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.subject.SubjectRepository;
+import com.webgrus17.everyscore.service.user.SubjectService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
@@ -26,10 +27,11 @@ public class MainPageController {
 
     //게시판 검색기능을 구현안해도 될듯, 전체 게시판 내용만 주면 검색은 프론트에서 처리한다고 함
     //게시판 과목 출력
-    SubjectRepository subjectRepository;
+    private final SubjectService subjectService;
     @RequestMapping(value = "api/v1/board", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public String getBoard(){
-        List<Subject> subjects=subjectRepository.findAll();
+        List<Subject> subjects=subjectService.findAll();
+
         JsonArray jsonArray=new JsonArray();
 
         for(int i=0;i<subjects.size();i++){
