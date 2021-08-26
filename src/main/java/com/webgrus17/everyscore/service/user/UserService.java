@@ -22,6 +22,9 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("id가 존재하지 않습니다: " + Id));
     }
 
+    public User findById(String id){
+        return userRepository.findById(id).get();
+    }
     public Long save(UserDto userDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); // 인코더 선언
         userDto.setPw(encoder.encode(userDto.getPw())); // 암호화

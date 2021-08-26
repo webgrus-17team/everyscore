@@ -53,17 +53,20 @@ public class PostController {
     private UserService userService;
     @RequestMapping(value="/api/v1/input/{subjectName}/{professorName}/{testType}", method=RequestMethod.POST)
     public String postInput(@PathVariable String subjectName, @PathVariable String professorName, @PathVariable String testType,
-                            @RequestBody UserScoreDto userScoreDto){
-        //파라미터값으로 과목 찾음
+                            @RequestAttribute String id, @RequestAttribute Integer myscore, @RequestAttribute Integer level){    //현재 requestbody에 담긴 값들은 user/myscore/level
+        //과목명/교수명/시험종류로 과목 pk 찾기
         Subject subject = subjectService.findByName(subjectName, professorName, testType);
-       // User user=userService.loadUserByUsername(user_id);
+        //id로 user pk 찾기
+        User user=userService.findById(id);
 
-        /*
-        1.파라미터로 과목 찾아냄 ->key
-        2. 파라미터로 user 찾아내거나 세션으로 어떤 user가 사용하는지 알아채서 userscore의 user id를 입력해줘야하는데 알수없음
-        3. 엔티티로 만들어냄
-        4. 저장
-         */
+        //엔티티 만듦
+        UserScoreDto userScoreDto=UserScoreDto.builder()
+                .user(user)
+                .subject(subject)
+                .myscore(myscore)
+                .level(level)
+                .build();
+
         userScoreService.save(userScoreDto);
         return "redirect:http://localhost:8081/Main_3.jsp"; //메인게시판으로 이동
     }
