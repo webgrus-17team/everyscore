@@ -38,7 +38,7 @@ public class ResultController {
         JsonObject jo = new JsonObject();
 
         JsonArray ja = new JsonArray();
-        for(int i=0; i< tempUserScore.size(); i++){
+        for (int i = 0; i < tempUserScore.size(); i++) {
             JsonObject tmpOb = new JsonObject();
             tmpOb.addProperty("score", tempUserScore.get(i).getMyscore());
             tmpOb.addProperty("level", tempUserScore.get(i).getLevel());
@@ -48,27 +48,69 @@ public class ResultController {
         jo.add("result", ja);
 
         return jo.toString();
-
-        /*
-        예상 보낼 json 형식(UserScore에 점수, 난이도 별 이름이 잘 저장되었다는 가정으로)
-        {
-            "result":[
-                {
-                    "score":17,
-                    "level":1
-                },
-                {
-                    "score":21,
-                    "level":3
-                },
-            ]
-        }
-         */
-        /*
-        간과한 내용이 하나 있음
-        현재 회원 기능이 불안정해서 내 점수가 몇점인지 모른다
-        이를 알려면 현재 사용중인 user의 id 혹은 code가 필요, 일단은 생략해야 할 수도
-         */
     }
+    /*
+    sendResult 테스트하기 위한 쿼리문, API(과목/유저 하나 추가, userScore 내용 추가)
+
+    - 쿼리문으로 생성하여서 생성일 및 수정일이 저장되지는 않을 것
+    - 비밀번호도 암호화되서 들어가지는 않음, 단순 테스트니 문제 없을 듯
+
+    1. 쿼리문 추가
+
+    INSERT INTO SUBJECT (PROFESSOR_NAME, SUBJECT_NAME, TEST_TYPE)
+    VALUES
+    ('교수명1', '과목명1', '중간고사'),
+    ('교수명1', '과목명1', '퀴즈'),
+    ('교수명2', '과목명2', '퀴즈'),
+    ('교수명2', '과목명2', '기말고사');
+
+    INSERT INTO USER (BIRTHDAY, CLASSNUMBER, EMAIL, GENDER, ID, MAJOR, NAME, PW)
+    VALUES
+    ('2021-08-26', '컴퓨터공학과', 'test1@test.com', 'male', 'test1', '12121212', '테스트1', 'test1'),
+    ('2021-08-25', '수학과', 'test2@test.com', 'female', 'test2', '13131313', '테스트2', 'test2');
+
+    INSERT INTO USER_SCORE(LEVEL, MYSCORE, SUBJECT_ID, USER_CODE)
+    VALUES
+    ('1', '89', '1', '1'),
+    ('4', '56', '1', '2'),
+    ('3', '69', '2', '1'),
+    ('2', '81', '2', '2'),
+    ('1', '98', '3', '1'),
+    ('1', '91', '3', '2'),
+    ('5', '31', '4', '1'),
+    ('4', '50', '4', '2');
+
+    2. API 테스트
+    http://localhost:8080/api/v1/result/과목명1/교수명1/중간고사
+
+    http://localhost:8080/api/v1/result/과목명1/교수명1/퀴즈
+
+    http://localhost:8080/api/v1/result/과목명2/교수명2/퀴즈
+
+    http://localhost:8080/api/v1/result/과목명2/교수명2/기말고사
+     */
+
+    /*
+    예상 보낼 json 형식(UserScore에 점수, 난이도 별 이름이 잘 저장되었다는 가정으로)
+    {
+        "result":[
+            {
+                "score":17,
+                "level":1
+            },
+            {
+                "score":21,
+                "level":3
+            },
+        ]
+    }
+     */
+
+    /*
+    간과한 내용이 하나 있음
+    현재 회원 기능이 불안정해서 내 점수가 몇점인지 모른다
+    이를 알려면 현재 사용중인 user의 id 혹은 code가 필요, 일단은 생략해야 할 수도
+     */
+
 
 }
