@@ -53,7 +53,7 @@ public class PostController {
     private UserService userService;
     @RequestMapping(value="/api/v1/input/{subjectName}/{professorName}/{testType}", method=RequestMethod.POST)
     public String postInput(@PathVariable String subjectName, @PathVariable String professorName, @PathVariable String testType,
-                            @RequestAttribute String id, @RequestAttribute Integer myscore, @RequestAttribute Integer level){    //현재 requestbody에 담긴 값들은 user/myscore/level
+                            @RequestAttribute String id, @RequestAttribute Integer myscore, @RequestAttribute Integer level){    //현재 request에 담긴 값들은 user/myscore/level
         //과목명/교수명/시험종류로 과목 pk 찾기
         Subject subject = subjectService.findByName(subjectName, professorName, testType);
         //id로 user pk 찾기
@@ -71,3 +71,14 @@ public class PostController {
         return "redirect:http://localhost:8081/Main_3.jsp"; //메인게시판으로 이동
     }
 }
+/*
+현재 post인데 url에 파라미터 또한 존재함
+때문에 param 처리하는 어노테이션과 body 처리하는 어노테이션이 함께 쓰여야 함
+구글링헤봤을 때, 동시에 실행하는 케이스가 드물게 있는 것으로 보임
+user를 모두 주석처리하고, subject post된 것 확인하고 나서 api 테스트를 실행해봤는데, 404가 뜸
+경로의 문제거나 , 없는 데이터를 요구하는 문제인데, 파악하지 못함
+(user를 주석처리한 이유는, 회원가입 때 500에러가 발생하기 때문임)
+
+requestattribute 어노테이션을 쓴 이유는, requestbody 어노테이션은 dto 전체를 받는데, dto에서 subject 부분은 우리가 받고나서 엔티티화 해줘야하기 때문에 dto 일부만을 받기 위함임
+그러나 처음 써보는 것이라 이 부분에서 문제가 발생할 수 있기 때문에 공부가 더 필요한 듯함
+*/
