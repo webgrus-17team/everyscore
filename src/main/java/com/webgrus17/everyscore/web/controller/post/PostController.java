@@ -2,10 +2,12 @@ package com.webgrus17.everyscore.web.controller.post;
 
 import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.subject.SubjectRepository;
+import com.webgrus17.everyscore.domain.user.User;
 import com.webgrus17.everyscore.domain.user_score.UserScore;
 import com.webgrus17.everyscore.domain.user_score.UserScoreRepository;
 import com.webgrus17.everyscore.service.user.SubjectService;
 import com.webgrus17.everyscore.service.user.UserScoreService;
+import com.webgrus17.everyscore.service.user.UserService;
 import com.webgrus17.everyscore.web.dto.SubjectSaveDto;
 import com.webgrus17.everyscore.web.dto.UserScoreDto;
 import lombok.RequiredArgsConstructor;
@@ -44,16 +46,13 @@ public class PostController {
 
     //점수입력
     private UserScoreService userScoreService;
+    private UserService userService;
     @RequestMapping(value="/api/v1/input/{subjectName}/{professorName}/{testType}", method=RequestMethod.POST)
-    public ResponseEntity<?> postInput(@RequestBody UserScoreDto userScoreDto){
-        userScoreService.save(userScoreDto);
-        return new ResponseEntity<>("{}",HttpStatus.CREATED);
-    }
     public String postInput(@PathVariable String subjectName, @PathVariable String professorName, @PathVariable String testType,
                             @RequestBody UserScoreDto userScoreDto){
         //파라미터값으로 과목 찾음
         Subject subject = subjectService.findByName(subjectName, professorName, testType);
-
+       // User user=userService.loadUserByUsername(user_id);
 
         /*
         1.파라미터로 과목 찾아냄 ->key
@@ -61,6 +60,7 @@ public class PostController {
         3. 엔티티로 만들어냄
         4. 저장
          */
+        userScoreService.save(userScoreDto);
         return "redirect:http://localhost:8081/Main_2.jsp"; //메인게시판으로 이동
     }
 }
