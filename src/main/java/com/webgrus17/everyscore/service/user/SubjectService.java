@@ -15,10 +15,10 @@ public class SubjectService {
     private final SubjectRepository subjectRepository;
 
     @Transactional
-    public long save(final SubjectSaveDto subjectSaveDto){
+    public void save(final SubjectSaveDto subjectSaveDto){
         subjectRepository.save(subjectSaveDto.toEntity1());
         subjectRepository.save(subjectSaveDto.toEntity2());
-        return subjectRepository.save(subjectSaveDto.toEntity3()).getId();
+        subjectRepository.save(subjectSaveDto.toEntity3());
     }
 
     @Transactional
