@@ -55,11 +55,11 @@ public class ResultController {
             "result":[
                 {
                     "score":17,
-                    "level":"easy"
+                    "level":1
                 },
                 {
                     "score":21,
-                    "level":"hard"
+                    "level":3
                 },
             ]
         }
