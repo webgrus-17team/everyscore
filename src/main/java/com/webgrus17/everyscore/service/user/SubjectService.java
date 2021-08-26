@@ -22,7 +22,7 @@ public class SubjectService {
     @Transactional
     public Subject findByName(String subjectName, String professorName) {
         // 문제가 없다면 무조건 하나의 과목만 들어갈 것
-        List<Subject> subjects = subjectRepository.findBysubjectNameAndprofessorName(subjectName, professorName);
+        List<Subject> subjects = subjectRepository.findBySubjectNameAndProfessorName(subjectName, professorName);
 
         // 해당 과목명, 교수명을 지닌 과목의 id를 return
         return subjects.get(0);
