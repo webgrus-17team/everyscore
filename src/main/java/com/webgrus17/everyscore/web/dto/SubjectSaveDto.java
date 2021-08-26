@@ -22,7 +22,7 @@ public class SubjectSaveDto {
         return Subject.builder()
                 .professorName(professorName)
                 .subjectName(subjectName)
-                .testType("중간고사")
+                .testType("middle")
                 .build();
     }
 
@@ -30,7 +30,7 @@ public class SubjectSaveDto {
         return Subject.builder()
                 .professorName(professorName)
                 .subjectName(subjectName)
-                .testType("기말고사")
+                .testType("final")
                 .build();
     }
 
@@ -38,7 +38,7 @@ public class SubjectSaveDto {
         return Subject.builder()
                 .professorName(professorName)
                 .subjectName(subjectName)
-                .testType("퀴즈")
+                .testType("quiz")
                 .build();
     }
 }
