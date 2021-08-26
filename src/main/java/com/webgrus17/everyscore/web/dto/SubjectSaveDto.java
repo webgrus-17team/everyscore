@@ -10,19 +10,35 @@ import lombok.NoArgsConstructor;
 public class SubjectSaveDto {
     private String professorName;
     private String subjectName;
-    private String testType;
+    //private String testType;
 
     @Builder
-    public SubjectSaveDto(final String professorName, final String subjectName, final String testType){
+    public SubjectSaveDto(final String professorName, final String subjectName){
         this.professorName=professorName;
         this.subjectName=subjectName;
-        this.testType=testType;
+        //this.testType=testType;
     }
-    public Subject toEntity(){
+    public Subject toEntity1(){
         return Subject.builder()
                 .professorName(professorName)
                 .subjectName(subjectName)
-                .testType(testType)
+                .testType("중간고사")
+                .build();
+    }
+
+    public Subject toEntity2(){
+        return Subject.builder()
+                .professorName(professorName)
+                .subjectName(subjectName)
+                .testType("기말고사")
+                .build();
+    }
+
+    public Subject toEntity3(){
+        return Subject.builder()
+                .professorName(professorName)
+                .subjectName(subjectName)
+                .testType("퀴즈")
                 .build();
     }
 }
