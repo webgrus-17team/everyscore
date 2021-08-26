@@ -1,5 +1,7 @@
 package com.webgrus17.everyscore.web.controller.main;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.webgrus17.everyscore.domain.subject.Subject;
 import com.webgrus17.everyscore.domain.subject.SubjectRepository;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +28,21 @@ public class MainPageController {
     //게시판 과목 출력
     SubjectRepository subjectRepository;
     @RequestMapping(value = "api/v1/board", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getBoard(Subject subject) throws Exception{
-        return ResponseEntity.ok(subjectRepository.findAll());
+    public String getBoard(){
+        List<Subject> subjects=subjectRepository.findAll();
+        JsonArray jsonArray=new JsonArray();
+
+        for(int i=0;i<subjects.size();i++){
+            JsonObject temp=new JsonObject();
+            temp.addProperty("professorName", subjects.get(i).getProfessorName());
+            temp.addProperty("subjectName",subjects.get(i).getSubjectName());
+            temp.addProperty("testType",subjects.get(i).getTestType());
+            jsonArray.add(temp);
+        }
+        return jsonArray.toString();
     }
+    /*
+    restconroller 내부의 responseentity를 사용하고 싶었지만 직관적이지가 않아서 result api와 동일하게 jsonarray로 처리
+     */
 
 }
