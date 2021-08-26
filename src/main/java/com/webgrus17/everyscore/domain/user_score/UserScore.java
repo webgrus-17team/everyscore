@@ -34,7 +34,9 @@ public class UserScore {
     //수정날짜 없어도 됨
 
     @Builder
-    public UserScore(Integer myscore, Integer level){
+    public UserScore(User user, Subject subject, Integer myscore, Integer level){
+        this.user=user;
+        this.subject=subject;
         this.myscore=myscore;
         this.level=level;
     }
