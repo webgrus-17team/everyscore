@@ -26,10 +26,10 @@ public class ResultController {
     private final UserScoreService userScoreService;
 
     // 점수를 score, 난이도를 level로 해당 과목의 모든 사용자의 결과를 보내준다.
-    @GetMapping("/api/v1/result/{Subject_name}/{Professor_name}")
-    public String sendResult(@PathVariable String Subject_name, @PathVariable String Professor_name) {
+    @GetMapping("/api/v1/result/{subjectName}/{professorName}")
+    public String sendResult(@PathVariable String subjectName, @PathVariable String professorName) {
         // 1. SubjectService에 추가후 findByName으로 과목 찾기
-        Subject tempSubject = subjectService.findByName(Subject_name, Professor_name);
+        Subject tempSubject = subjectService.findByName(subjectName, professorName);
 
         // 2. 해당 과목에 해당되는 UserScore의 score, level 가져오기
         List<UserScore> tempUserScore = userScoreService.findBySubject(tempSubject);

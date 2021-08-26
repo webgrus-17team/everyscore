@@ -8,21 +8,21 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class SubjectSaveDto {
-    private String Professor_name;
-    private String Subject_name;
-    private String Test_type;
+    private String professorName;
+    private String subjectName;
+    private String testType;
 
     @Builder
-    public SubjectSaveDto(final String Professor_name, final String Subject_name, final String Test_type){
-        this.Professor_name=Professor_name;
-        this.Subject_name=Subject_name;
-        this.Test_type=Test_type;
+    public SubjectSaveDto(final String professorName, final String subjectName, final String testType){
+        this.professorName=professorName;
+        this.subjectName=subjectName;
+        this.testType=testType;
     }
     public Subject toEntity(){
         return Subject.builder()
-                .Professor_name(Professor_name)
-                .Subject_name(Subject_name)
-                .Test_type(Test_type)
+                .professorName(professorName)
+                .subjectName(subjectName)
+                .testType(testType)
                 .build();
     }
 }
