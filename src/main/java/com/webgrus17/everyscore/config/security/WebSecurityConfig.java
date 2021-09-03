@@ -38,20 +38,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .anyRequest().permitAll() // api 테스트 시 위 2줄 주석처리 후 해당 줄 주석 해제
                 .and()
                     .exceptionHandling()    //인증되지 않은 사용자 접근 시에 로그인 페이지 이동
-                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/Login_Page.jsp"))
+                    .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("http://localhost:8081/loginPage.jsp"))
                 .and()
                     .formLogin()
-                        .loginPage("http://localhost:8081/Login_Page.jsp")  //로그인페이지를 기본 폼에서 커스텀페이지로 설정
+                        .loginPage("http://localhost:8081/loginPage.jsp")  //로그인페이지를 기본 폼에서 커스텀페이지로 설정
 //                        .successHandler(authenticationSuccessHandler()) // 로그인은 json형태가 아니므로 우선 주석처리
                         .usernameParameter("id")    //시큐리티 기본 아이디명이 username이므로 id로 이름 변경
                         .passwordParameter("pw")    //노션 기반으로, password->pw 변경
                         .loginProcessingUrl("/api/v1/user") // 삽질 많이 했는데 결국 security에서 이 기능도 제공해줌
-                        .failureForwardUrl("http://localhost:8081/login-fail.jsp") // 로그인 실패시 넘어갈 url(왜인지 작동 안됨)
-                        .defaultSuccessUrl("http://localhost:8081/Main3_page.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
+//                        .failureForwardUrl("http://localhost:8081/Login_fail.jsp") // 로그인 실패시 넘어갈 url(왜인지 작동 안됨)
+                        .defaultSuccessUrl("http://localhost:8081/main3Page.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                 .and()
                     .logout()
                         .logoutUrl("/doLogout") // 로그아웃 요청할시 해당 url 입력
-                        .logoutSuccessUrl("http://localhost:8081/Login_Page.jsp") // 로그아웃 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
+                        .logoutSuccessUrl("http://localhost:8081/loginPage.jsp") // 로그아웃 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                         .invalidateHttpSession(true) // 로그아웃시 저장된 세션 날리기
         ;
     }
