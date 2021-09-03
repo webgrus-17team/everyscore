@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .passwordParameter("pw")    //노션 기반으로, password->pw 변경
                         .loginProcessingUrl("/api/v1/user") // 삽질 많이 했는데 결국 security에서 이 기능도 제공해줌
                         .failureForwardUrl("http://localhost:8081/login-fail.jsp") // 로그인 실패시 넘어갈 url(왜인지 작동 안됨)
-                        .defaultSuccessUrl("http://localhost:8081/main_3.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
+                        .defaultSuccessUrl("http://localhost:8081/Main3_page.jsp") // 로그인 성공시 넘어갈 url, 프론트 주소 넣기(로컬이면 포트번호까지)
                 .and()
                     .logout()
                         .logoutUrl("/doLogout") // 로그아웃 요청할시 해당 url 입력
